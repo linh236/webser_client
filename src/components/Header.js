@@ -1,20 +1,10 @@
 import React from 'react'
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import StarIcon from '@material-ui/icons/StarBorder';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
-import Home from './Home'
 const useStyles = makeStyles((theme) => ({
   '@global': {
     ul: {
@@ -45,27 +35,51 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Header() {
+  const Check = () => {
+    let id = localStorage.getItem('id');
+    if (id === null) {
+      return(
+        <>
+          <Button href="/Login" color="primary" variant="outlined" className={classes.link}>
+          Login
+          </Button>
+        </>
+      )
+    } else {
+      return (
+        <>
+          <Link variant="button" color="textPrimary" href="/Home" to="/Home" className={classes.link}>
+          Home
+          </Link>
+          <Link variant="button" color="textPrimary" href="/Led" className={classes.link}>
+          Led
+          </Link>
+          <Link variant="button" color="textPrimary" href="/Setting" className={classes.link}>
+          Setting
+          </Link>
+          <Link variant="button" color="textPrimary" href="/Service" className={classes.link}>
+          Service
+          </Link>
+          <Link variant="button" color="textPrimary" href="/Feedback" className={classes.link}>
+          Feedback
+          </Link>
+          <Button href="/Logout" color="primary" variant="outlined" className={classes.link}>
+          Logout
+          </Button>
+        </>
+      )
+    }
+  }
   const classes = useStyles();
   return (
     <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
         <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
-        Company name
+        WebSer
         </Typography>
         <nav>
-        <Link variant="button" color="textPrimary" href="/Home" to="/Home" className={classes.link}>
-        Home
-        </Link>
-        <Link variant="button" color="textPrimary" href="/Led" className={classes.link}>
-        Led
-        </Link>
-        <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-        Support
-        </Link>
+        <Check/>
         </nav>
-        <Button href="#" color="primary" variant="outlined" className={classes.link}>
-        Login
-        </Button>
       </Toolbar>
     </AppBar>
   )
