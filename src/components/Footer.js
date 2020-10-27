@@ -29,12 +29,12 @@ const useStyles = makeStyles((theme) => ({
 
 const footers = [
   {
-    title: 'Company',
-    description: ['Team', 'History', 'Contact us', 'Locations'],
+    title: 'Contact',
+    description: ['Email', 'Facebook', 'Zalo', 'Phone'],
   },
   {
     title: 'Features',
-    description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
+    description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff'],
   },
   {
     title: 'Resources',

@@ -3,7 +3,6 @@ import Container from '@material-ui/core/Container';
 import {URL} from './Myconnect';
 import $ from 'jquery';
 import moment from 'moment';
-import 'moment/locale/vi';
 import * as Icon from 'react-bootstrap-icons';
 import Button from '@material-ui/core/Button';
 import Modal from 'react-bootstrap/Modal'
@@ -16,6 +15,8 @@ const Feedback = () => {
   const [items, setItems] = useState([])
   const [show, setShow] = useState(false);
   const [deleteid, setDeleteId] = useState('');
+  const [nulltitle, setNullTitle] = useState(null);
+  const [nullcontent, setNullContent] = useState(null);
 
   const handleClose = () => setShow(false);
   let id = localStorage.getItem('id');
@@ -40,23 +41,32 @@ const Feedback = () => {
     }).find('textarea').change();
   }
   const handleSubmit = () => {
+    if (title === ""){
+      setNullTitle("Title is blank !");
+      setNullContent("Content is blank")
+      return false;
+    }
+    if (content === ""){
+      nullcontent("Content is blank")
+      return false;
+    }
     let url_send_data = URL+`/api/reports`;
-      fetch(url_send_data, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          title: title,
-          content: content,
-          information_id: id
+    fetch(url_send_data, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        title: title,
+        content: content,
+        information_id: id
 
-        })
-      }).then((response) => response.json())
-      .then((data) => {
-        getFeedback(id);
-      }).catch((err) => console.error(err))
+      })
+    }).then((response) => response.json())
+    .then((data) => {
+      getFeedback(id);
+    }).catch((err) => console.error(err))
   }
   const _delete = (id) => {
     setShow(true);
@@ -107,10 +117,13 @@ const Feedback = () => {
             <div className="form-group">
               <label htmlFor="exampleInputEmail1">Title</label>
               <input type="email" className="form-control" onChange={(e)=>setTitle(e.target.value)}/>
+              <small className="text-center text-danger">{nulltitle}</small>
+
             </div>
             <div className="form-group dev_textarea">
               <label htmlFor="Content">Content</label>
-              <textarea className="form-control textarea" onInput={autosize}  onChange={(e)=>setContent(e.target.value)}></textarea>
+              <textarea className="form-control textarea"  onChange={(e)=>setContent(e.target.value)}></textarea>
+              <small className="text-center text-danger">{nullcontent}</small>
             </div>
             <button type="submit" onClick={handleSubmit} className="btn btn-primary btn_submit button">Submit</button>
           <table className="table">
