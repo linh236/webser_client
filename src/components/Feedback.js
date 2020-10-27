@@ -27,7 +27,7 @@ const Feedback = () => {
     getFeedback(id);
   },[])
   const getFeedback = (id) => {
-    let url = URL+`/api/showpopup/${id}`;
+  let url = URL+`/api/showpopup/${id}`;
     fetch(url)
        .then(res => res.json())
        .then(res => {
@@ -61,15 +61,14 @@ const Feedback = () => {
         'Content-type': 'application/json'
       },
       body: JSON.stringify({
-        title: title,
-        content: content,
-        information_id: id
-
-      })
-    }).then((response) => response.json())
-    .then((data) => {
-      getFeedback(id);
-    }).catch((err) => console.error(err))
+          title: title,
+          content: content,
+          information_id: id
+        })
+      }).then((response) => response.json())
+      .then((data) => {
+        getFeedback(id);
+      }).catch((err) => console.error(err))
   }
   const _delete = (id) => {
     setShow(true);
