@@ -166,13 +166,19 @@ function Home() {
         {/* End hero unit */}
         <Container maxWidth="md" component="main">
           <Grid container spacing={5} alignItems="flex-end">
-            {tiers.map((tier) => (
+            {effectives.map((tier) => (
               // Enterprise card is full width at sm breakpoint
               <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
                 <Card>
                   <CardHeader
                     title={tier.title}
-                    subheader={tier.subheader}
+                    subheader={
+                      tier.stars.map((star,value) => (
+                        <span key={value}>
+                          <StarIcon/>
+                        </span>
+                      ))
+                    }
                     titleTypographyProps={{ align: 'center' }}
                     subheaderTypographyProps={{ align: 'center' }}
                     action={tier.title === 'Pro' ? <StarIcon /> : null}
@@ -183,10 +189,10 @@ function Home() {
                       <Typography component="h2" variant="h3" color="textPrimary">
                         ${tier.price}
                       </Typography>
-                      <Typography variant="h6" color="textSecondary">
-                        /mo
-                      </Typography>
+
+
                     </div>
+
                     <ul>
                       {tier.description.map((line) => (
                         <Typography component="li" variant="subtitle1" align="center" key={line}>
@@ -332,3 +338,6 @@ function Home() {
   );
 }
 export default Home;
+// <Typography variant="h6" color="textSecondary">
+//   /mo
+// </Typography>

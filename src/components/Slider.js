@@ -32,14 +32,14 @@ const Slider = () => {
         <Fade in="true">
           {
             sliders.map((key,index)=> (
-            <div key={index} className="each-fade">
-            <div key={index} className="image-container">
-              <img key={index} src={URL+key.image.url} className="w-100 mh-70"/>
-            </div>
-            <div>
-              <h2 className="text-center position-absolute img_slider" style={{"color": key.textcolor}}>{key.title}</h2>
-            </div>
-          </div>
+              <div key={index} className="each-fade">
+                <div key={index} className="image-container">
+                  <img key={index} src={URL+key.image.url} className="w-100 mh-70"/>
+                </div>
+                <div>
+                  <h2 className="text-center position-absolute img_slider" style={{"color": key.textcolor}}>{key.title}</h2>
+                </div>
+              </div>
             ))
           }
         </Fade>

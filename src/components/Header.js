@@ -48,9 +48,6 @@ function Header() {
     } else {
       return (
         <>
-          <Link variant="button" color="textPrimary" href="/Home" to="/Home" className={classes.link}>
-          Home
-          </Link>
           <Link variant="button" color="textPrimary" href="/Led" className={classes.link}>
           Led
           </Link>
@@ -78,6 +75,9 @@ function Header() {
         WebSer
         </Typography>
         <nav>
+        <Link variant="button" color="textPrimary" href="/Home" to="/Home" className={classes.link}>
+        Home
+        </Link>
         <Check/>
         </nav>
       </Toolbar>

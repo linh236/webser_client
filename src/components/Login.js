@@ -36,7 +36,7 @@ function Login () {
   })
   .then(function (response) {
     console.log(response);
-    if (response['data']['status'] ===200 && response['data']['disable'] === 0) {
+    if (response['data']['status'] ===200 && response['data']['disable'] === 0 && response['data']['admin'] === 0 ) {
        localStorage.setItem('id', response['data']['id'])
        navigation();
     }else{

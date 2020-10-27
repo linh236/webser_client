@@ -5,8 +5,8 @@ import $ from 'jquery';
 import moment from 'moment';
 import * as Icon from 'react-bootstrap-icons';
 import Button from '@material-ui/core/Button';
-import Modal from 'react-bootstrap/Modal'
-
+import Modal from 'react-bootstrap/Modal';
+import '../styles/feedback.css';
 const Feedback = () => {
   const [isLoading, setLoading] = useState(true);
   const [error, setError]= useState(null);
@@ -14,11 +14,14 @@ const Feedback = () => {
   const [title, setTitle] = useState('');
   const [items, setItems] = useState([])
   const [show, setShow] = useState(false);
+  const [showcontent, setShowContent] = useState(false);
+  const [repcontent, setRepContent] = useState(null);
   const [deleteid, setDeleteId] = useState('');
   const [nulltitle, setNullTitle] = useState(null);
   const [nullcontent, setNullContent] = useState(null);
 
   const handleClose = () => setShow(false);
+  const handleCloseContent = () => setShowContent(false);
   let id = localStorage.getItem('id');
   useEffect(()=> {
     getFeedback(id);
@@ -87,6 +90,15 @@ const Feedback = () => {
         getFeedback(id);
       }).catch((err) => console.error(err))
   }
+  const showcontentmodal = (content) => {
+    setShowContent(true);
+    if(content === null){
+      setRepContent('The manager has not responded to your message');
+      return false;
+    }
+      setRepContent(content);
+  }
+
   if (error) {
     return <div className="text-center">Error: {error.message}</div>;
   } else if (isLoading) {
@@ -113,6 +125,21 @@ const Feedback = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+      <Modal show={showcontent} onHide={(handleCloseContent)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Feedback from a manager </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+         <div className="row">
+           <div className="col-sm-12">{repcontent}</div>
+         </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="outlined" className="bg-danger text-white" onClick={handleCloseContent}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
         <Container maxWidth="md" component="main">
             <div className="form-group">
               <label htmlFor="exampleInputEmail1">Title</label>
@@ -122,7 +149,7 @@ const Feedback = () => {
             </div>
             <div className="form-group dev_textarea">
               <label htmlFor="Content">Content</label>
-              <textarea className="form-control textarea"  onChange={(e)=>setContent(e.target.value)}></textarea>
+              <textarea className="form-control textarea" onInput={autosize}  onChange={(e)=>setContent(e.target.value)}></textarea>
               <small className="text-center text-danger">{nullcontent}</small>
             </div>
             <button type="submit" onClick={handleSubmit} className="btn btn-primary btn_submit button">Submit</button>
@@ -142,7 +169,7 @@ const Feedback = () => {
             <tbody>
               {
                 items.map((key,value) => (
-                    <tr key={value}>
+                    <tr key={value} onClick={(e)=>showcontentmodal(key.rep_content)} className="repcontent">
                       <td className="text-center border">{value}</td>
                       <td className="text-center border">{key.title}</td>
                       <td className="text-center border">{key.content}</td>

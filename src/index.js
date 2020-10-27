@@ -6,7 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import * as serviceWorker from './serviceWorker';
 import Header from './components/Header'
 import Footer from './components/Footer'
-import Slider from './components/Slider'
 import './styles/support.css';
 ReactDOM.render(
   <React.StrictMode>
