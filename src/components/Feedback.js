@@ -116,11 +116,11 @@ const Feedback = () => {
          </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="outlined" className="bg-danger text-white" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="outlined" className="bg-primary white" onClick={handleDeleteSubmit}>
+          <Button variant="outlined" className="bg-primary text-white m-1" onClick={handleDeleteSubmit}>
             Confirm
+          </Button>
+          <Button variant="outlined" className="bg-danger text-white m-1" onClick={handleClose}>
+            Close
           </Button>
         </Modal.Footer>
       </Modal>
@@ -168,18 +168,21 @@ const Feedback = () => {
             <tbody>
               {
                 items.map((key,value) => (
-                    <tr key={value} onClick={(e)=>showcontentmodal(key.rep_content)} className="repcontent">
-                      <td className="text-center border">{value}</td>
-                      <td className="text-center border">{key.title}</td>
-                      <td className="text-center border">{key.content}</td>
-                      <td className="text-center border">{key.mark === 0 ? "No" : "Yes"}</td>
-                      <td className="text-center border">{moment(key.created_at).format('Y-MM-DD HH:mm')}</td>
-                      <td className="text-center border">
-                        <Button color="primary" onClick={(e)=>_delete(key.id)}>
-                          <Icon.Trash className="text-danger"/>
-                        </Button>
-                      </td>
-                    </tr>
+                  <tr key={value} className="repcontent">
+                    <td className="text-center border">{value}</td>
+                    <td className="text-center border">{key.title}</td>
+                    <td className="text-center border">{key.content}</td>
+                    <td className="text-center border">{key.mark === 0 ? "No" : "Yes"}</td>
+                    <td className="text-center border">{moment(key.created_at).format('Y-MM-DD HH:mm')}</td>
+                    <td className="text-center border">
+                      <button className="btn btn-primary m-1"  onClick={(e)=>showcontentmodal(key.rep_content)} >
+                        Detail
+                      </button>
+                      <button className="btn btn-danger m-1"  onClick={(e)=>_delete(key.id)}>
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
                 ))
               }
             </tbody>

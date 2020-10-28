@@ -327,7 +327,9 @@ function Home() {
   },[])
   return (
     <>
+    <div>
       <Slider/>
+    </div>
       {
         id === null ?
           <IsLogin />

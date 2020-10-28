@@ -128,8 +128,7 @@ function Led (){
        </Modal.Header>
        <Modal.Body>
         <div className="row text-center">
-          <div className="col-sm-3">Set Time</div>
-          <div className="col-sm-9">
+          <div className="col-sm-12 text-center">
             <DateTimePicker
               name="datetime"
               format="y-MM-dd H:mm"
@@ -140,11 +139,11 @@ function Led (){
         </div>
        </Modal.Body>
        <Modal.Footer>
-         <Button variant="outlined" className="bg-danger text-white" onClick={handleClose}>
-           Close
+         <Button variant="outlined" className="bg-primary text-white m-1" onClick={handleSubmit}>
+           Save
          </Button>
-         <Button variant="outlined" className="bg-primary white" onClick={handleSubmit}>
-           Save Changes
+         <Button variant="outlined" className="bg-danger text-white m-1" onClick={handleClose}>
+         Close
          </Button>
        </Modal.Footer>
      </Modal>

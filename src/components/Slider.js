@@ -28,16 +28,16 @@ const Slider = () => {
     return <div className="text-center">Loading...</div>;
   }else{
   return(
-      <div className="slide-container position-relative">
+      <div className="slide-container position-relative m-1">
         <Fade in="true">
           {
             sliders.map((key,index)=> (
               <div key={index} className="each-fade">
-                <div key={index} className="image-container">
-                  <img key={index} src={URL+key.image.url} className="w-100 mh-70"/>
+                <div key={index} className="image-container text-center container_img">
+                  <img key={index} src={URL+key.image.url} className="mh-70 img_slider"/>
                 </div>
                 <div>
-                  <h2 className="text-center position-absolute img_slider" style={{"color": key.textcolor}}>{key.title}</h2>
+                  <h2 className="text-center position-absolute title_slider" style={{"color": key.textcolor}}>{key.title}</h2>
                 </div>
               </div>
             ))
