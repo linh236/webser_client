@@ -168,7 +168,7 @@ function Home() {
           <Grid container spacing={5} alignItems="flex-end">
             {effectives.map((tier) => (
               // Enterprise card is full width at sm breakpoint
-              <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
+              <Grid item key={tier.title} xs={12} sm={tier.title === 'Qualities' ? 12 : 6} md={4}>
                 <Card>
                   <CardHeader
                     title={tier.title}
@@ -232,7 +232,7 @@ function Home() {
       <Grid container spacing={5} alignItems="flex-end">
         {effectives.map((effect) => (
           // Enterprise card is full width at sm breakpoint
-          <Grid item key={effect.title} xs={12} sm={effect.title === 'Enterprise' ? 12 : 6} md={4}>
+          <Grid item key={effect.title} xs={12} sm={effect.title === 'Qualities' ? 12 : 6} md={4}>
             <Card>
               <CardHeader
                 title={effect.title}
