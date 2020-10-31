@@ -18,6 +18,14 @@ const useStyles = makeStyles((theme) => ({
   link: {
     margin: theme.spacing(1, 1.5),
   },
+  backLogoutButton:{
+    background: '#dc3545',
+    color: '#ffffff',
+  },
+  backLoginButton:{
+    background: '#007bff',
+    color: '#ffffff',
+  }
 }));
 
 function Header() {
@@ -29,9 +37,7 @@ function Header() {
           <Nav className="mr-auto">
             <Nav.Link variant="button" color="textPrimary" href="/home" className={classes.link}>Home</Nav.Link>
           </Nav>
-          <Button href="/Login" color="primary" variant="outlined" className={classes.link}>
-          Login
-          </Button>
+          <Button href="/Login" color="primary" variant="outlined" className={classes.link, classes.backLoginButton}>Login</Button>
         </>
       )
     } else {
@@ -44,9 +50,7 @@ function Header() {
             <Nav.Link variant="button" color="textPrimary" href="/Service" className={classes.link}>Service</Nav.Link>
             <Nav.Link variant="button" color="textPrimary" href="/Feedback" className={classes.link}>Feedback</Nav.Link>
           </Nav>
-          <Button href="/Logout" color="primary" variant="outlined" className={classes.link}>
-            Logout
-          </Button>
+          <Button href="/Logout" color="primary" variant="outlined" className={classes.link, classes.backLogoutButton}>Logout</Button>
         </>
       )
     }
@@ -55,7 +59,7 @@ function Header() {
   return (
     <>
       <Navbar bg="light" expand="lg" sticky="top" variant="light">
-        <Navbar.Brand href="/home">Webser client</Navbar.Brand>
+        <Navbar.Brand href="/">Webser client</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav"/>
         <Navbar.Collapse id="basic-navbar-nav">
           <Check/>
