@@ -13,6 +13,7 @@ import Container from '@material-ui/core/Container';
 import Slider from './Slider';
 import {URL} from './Myconnect';
 import Parser from 'html-react-parser';
+import '../styles/home.css';
 
 const useStyles = makeStyles((theme) => ({
   '@global': {
