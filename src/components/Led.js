@@ -7,7 +7,7 @@ import 'moment/locale/vi';
 import DateTimePicker from 'react-datetime-picker';
 import Modal from 'react-bootstrap/Modal'
 import Container from '@material-ui/core/Container';
-
+import $ from 'jquery';
 function Led (){
   const [error, setError] = useState(null);
   const [isLoading, setLoading] = useState(true);
@@ -24,6 +24,7 @@ function Led (){
   const [status, setStatus] = useState('');
   const [name, setName] = useState('');
   const [column, setColumn] = useState('');
+  const [date, setDate] = useState(new Date());
 
   const [show, setShow] = useState(false);
 
@@ -34,6 +35,7 @@ function Led (){
    useEffect(() => {
      getLed(id)
    },[])
+
 
   const getLed = (id) =>{
     let url = URL+`/api/led_status/${id}`;
@@ -113,6 +115,11 @@ function Led (){
       }).catch((err) => console.error(err))
   }
 
+  const autorun = () => {
+    $(".led_status0").addClass('bg-info');
+  }
+  autorun();
+
   if (error) {
     return <div className="text-center">Error: {error.message}</div>;
   } else if (isLoading) {
@@ -162,7 +169,7 @@ function Led (){
         <tbody>
         <tr>
           <td className="border"><Icon.Lamp/> Light 1</td>
-          <td className="text-center border"><Button color="primary" className={item0.status==='on'? 'bg-danger text-white' : ''} variant="outlined"  onClick={(e)=>Turn_led(item0.status, 'led_status0', 'status')}>{item0.status}</Button></td>
+          <td className="text-center border"><Button color="primary" className={item0.status==='on'? 'bg-danger text-white' : 'led_status0'} variant="outlined"  onClick={(e)=>Turn_led(item0.status, 'led_status0', 'status')}>{item0.status}</Button></td>
           <td className="text-center border"><Button color="primary" variant="outlined"  onClick={(e)=>setTime(item0.status, 'led_status0', 'turnon')}>{item0.turnon}</Button></td>
           <td className="text-center border"><Button color="primary" variant="outlined"  onClick={(e)=>setTime(item0.status, 'led_status0', 'turnoff')}>{item0.turnoff}</Button></td>
         </tr>

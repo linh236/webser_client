@@ -3,7 +3,7 @@ import {URL} from './Myconnect';
 import '../styles/service.css';
 import CurrencyFormat from 'react-currency-format';
 import Container from '@material-ui/core/Container';
-
+import moment from 'moment';
 const Service = () => {
   const [error, setError] = useState(null);
   const [isLoading, setLoading] = useState(true);
@@ -21,6 +21,8 @@ const Service = () => {
        .then(res => res.json())
        .then(res => {
          setItems(res.data);
+         console.log(res.data);
+         console.log(res.service_amount);
          setAmount(res.service_amount);
        })
        .catch((error) => {
@@ -52,13 +54,14 @@ const Service = () => {
         <table className="table">
           <thead>
             <tr>
-              <th colSpan="4" className="text-center border text-uppercase">My services are using</th>
+              <th colSpan="5" className="text-center border text-uppercase">My services are using</th>
             </tr>
             <tr>
               <th className="text-center border">Order</th>
               <th className="text-center border">Service</th>
               <th className="text-center border">Cost</th>
               <th className="text-center border">Amount</th>
+              <th className="text-center border">Created at</th>
             </tr>
           </thead>
           <tbody>
@@ -68,6 +71,7 @@ const Service = () => {
                   <td className="border text-center">{key.name}</td>
                   <td className="border text-center"><CurrencyFormat value={key.cost} displayType={'text'} thousandSeparator={true} /></td>
                   <td className="border text-center">{amount[value]}</td>
+                  <td className="border text-center">{moment(key.created_at).format('Y-MM-DD HH:mm')}</td>
               </tr>
             ))}
           </tbody>

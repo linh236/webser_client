@@ -157,11 +157,11 @@ function Home() {
         {/* Hero unit */}
         <Container maxWidth="sm" component="main" className={classes.heroContent}>
           <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-            Pricing
+            Welcome to my house
           </Typography>
           <Typography variant="h5" align="center" color="textSecondary" component="p">
-            Quickly build an effective pricing table for your potential customers with this layout.
-            It&apos;s built with default Material-UI components with little customization.
+            Thank you for your trust in choosing the inn as a residence.
+            It&apos;s the honor of the hostel and we will promise to fulfill all your needs.
           </Typography>
         </Container>
         {/* End hero unit */}

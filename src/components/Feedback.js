@@ -67,6 +67,8 @@ const Feedback = () => {
         })
       }).then((response) => response.json())
       .then((data) => {
+        setTitle('');
+        setContent('');
         getFeedback(id);
       }).catch((err) => console.error(err))
   }
@@ -142,13 +144,13 @@ const Feedback = () => {
         <Container maxWidth="md" component="main">
             <div className="form-group">
               <label htmlFor="exampleInputEmail1">Title</label>
-              <input type="email" className="form-control" onChange={(e)=>setTitle(e.target.value)}/>
+              <input type="email" className="form-control" value={title} onChange={(e)=>setTitle(e.target.value)}/>
               <small className="text-center text-danger">{nulltitle}</small>
 
             </div>
             <div className="form-group dev_textarea">
               <label htmlFor="Content">Content</label>
-              <textarea className="form-control textarea" onInput={autosize}  onChange={(e)=>setContent(e.target.value)}></textarea>
+              <textarea className="form-control textarea" onInput={autosize} value={content}  onChange={(e)=>setContent(e.target.value)}></textarea>
               <small className="text-center text-danger">{nullcontent}</small>
             </div>
             <button type="submit" onClick={handleSubmit} className="btn btn-primary btn_submit button">Submit</button>
