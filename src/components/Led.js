@@ -116,7 +116,7 @@ function Led (){
   }
 
   const autorun = () => {
-    $(".led_status0").addClass('bg-info');
+    // $(".led_status0").addClass('bg-info');
   }
   autorun();
 
