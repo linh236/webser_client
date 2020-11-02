@@ -290,7 +290,7 @@ function Home() {
                       />
                       <CardContent>
                         <div className={classes.cardPricing}>
-                          <Typography component="h5" variant="h5" color="textPrimary">
+                          <Typography component="h5" variant="h5" color="textPrimary" className="description">
                             {Parser(key.description)}
                           </Typography>
                         </div>
