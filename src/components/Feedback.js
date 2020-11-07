@@ -19,7 +19,7 @@ const Feedback = () => {
   const [deleteid, setDeleteId] = useState('');
   const [nulltitle, setNullTitle] = useState(null);
   const [nullcontent, setNullContent] = useState(null);
-
+  const [showpopcontent, setShowpopUpContent] = useState(null);
   const handleClose = () => setShow(false);
   const handleCloseContent = () => setShowContent(false);
   let id = localStorage.getItem('id');
@@ -91,13 +91,14 @@ const Feedback = () => {
         getFeedback(id);
       }).catch((err) => console.error(err))
   }
-  const showcontentmodal = (content) => {
+  const showcontentmodal = (repcontent,content) => {
     setShowContent(true);
-    if(content === null){
+    setShowpopUpContent(content);
+    if(repcontent === null){
       setRepContent('The manager has not responded to your message');
       return false;
     }
-      setRepContent(content);
+      setRepContent(repcontent);
   }
 
   if (error) {
@@ -132,7 +133,8 @@ const Feedback = () => {
         </Modal.Header>
         <Modal.Body>
          <div className="row">
-           <div className="col-sm-12">{repcontent}</div>
+           <div className="col-sm-12">Content: {showpopcontent} </div>
+           <div className="col-sm-12">Replay : {repcontent}</div>
          </div>
         </Modal.Body>
         <Modal.Footer>
@@ -160,9 +162,7 @@ const Feedback = () => {
                 <th colSpan="6" className="text-center border text-uppercase">The list has responded </th>
               </tr>
               <tr>
-                <th className="text-center border">Order</th>
                 <th className="text-center border">Title</th>
-                <th className="text-center border">Content</th>
                 <th className="text-center border">Status</th>
                 <th colSpan="2" className="text-center border">Created at</th>
               </tr>
@@ -171,13 +171,11 @@ const Feedback = () => {
               {
                 items.map((key,value) => (
                   <tr key={value} className="repcontent">
-                    <td className="text-center border">{value}</td>
                     <td className="text-center border">{key.title}</td>
-                    <td className="text-center border">{key.content}</td>
                     <td className="text-center border">{key.mark === 0 ? "No" : "Yes"}</td>
                     <td className="text-center border">{moment(key.created_at).format('Y-MM-DD HH:mm')}</td>
                     <td className="text-center border">
-                      <button className="btn btn-primary m-1"  onClick={(e)=>showcontentmodal(key.rep_content)} >
+                      <button className="btn btn-primary m-1"  onClick={(e)=>showcontentmodal(key.rep_content, key.content)} >
                         Detail
                       </button>
                       <button className="btn btn-danger m-1"  onClick={(e)=>_delete(key.id)}>
