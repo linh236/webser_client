@@ -59,7 +59,7 @@ const Service = () => {
             <tr>
               <th className="text-center border">Order</th>
               <th className="text-center border">Service</th>
-              <th className="text-center border">Cost</th>
+              <th className="text-center border">Cost(vnd)</th>
               <th className="text-center border">Amount</th>
               <th className="text-center border">Created at</th>
             </tr>
@@ -71,7 +71,7 @@ const Service = () => {
                   <td className="border text-center">{key.name}</td>
                   <td className="border text-center"><CurrencyFormat value={key.cost} displayType={'text'} thousandSeparator={true} /></td>
                   <td className="border text-center">{amount[value]}</td>
-                  <td className="border text-center">{moment(key.created_at).format('Y-MM-DD HH:mm')}</td>
+                  <td className="border text-center">{moment(key.created_at).format('Y-MM-DD')}</td>
               </tr>
             ))}
           </tbody>
@@ -84,7 +84,7 @@ const Service = () => {
             <tr>
               <th className="text-center border">Order</th>
               <th className="text-center border">Month</th>
-              <th className="text-center border">Money</th>
+              <th className="text-center border">Money(vnd)</th>
               <th className="text-center border">Date of payment</th>
               <th className="text-center border">Status</th>
             </tr>
@@ -99,6 +99,10 @@ const Service = () => {
                   <td className="border text-center">{key.status ===0? "No":"Yes"}</td>
               </tr>
             ))}
+              <tr className="bg-info">
+                <th className="border text-center" colspan="2">Total</th>
+                <th className="border text-center" colspan="3"><CurrencyFormat value={rents.reduce((totalMoney, rent) => totalMoney + rent.money, 0)} displayType={'text'} thousandSeparator={true} /></th>
+              </tr>
           </tbody>
         </table>
       </Container>
