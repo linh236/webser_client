@@ -9,6 +9,7 @@ import Modal from 'react-bootstrap/Modal'
 import Container from '@material-ui/core/Container';
 import $ from 'jquery';
 import Clock from 'react-clock';
+import '../styles/led.css';
 function Led (){
   const [error, setError] = useState(null);
   const [isLoading, setLoading] = useState(true);
@@ -268,49 +269,49 @@ function Led (){
         </thead>
         <tbody>
         <tr className={item0.active === 'disable' ? 'bg-secondary' : ''}>
-          <td className="border"><Icon.Lamp/> Light 1</td>
+          <td className="border"><Icon.Lamp/> Light 1 <span className="icon_lock_unlock">{item0.active === 'disable' ? <Icon.Lock/> : <Icon.Unlock />}</span></td>
           <td className="text-center border"><Button color="primary" className={item0.status==='on'? 'bg-danger text-white led_status0' : 'led_status0'} variant="outlined"  onClick={(e)=>Turn_led(item0.status, 'led_status0', 'status',item0.active)}>{item0.status}</Button></td>
           <td className="text-center border"><Button color="primary" variant="outlined"  onClick={(e)=>setTime(item0.status, 'led_status0', 'turnon', item0.active)}>{item0.turnon}</Button></td>
           <td className="text-center border"><Button color="primary" variant="outlined"  onClick={(e)=>setTime(item0.status, 'led_status0', 'turnoff', item0.active)}>{item0.turnoff}</Button></td>
         </tr>
-        <tr className={item1.active === 'disable' ? 'bg-secondary' : ''}>
-          <td className="border"><Icon.Lamp/> Light 2</td>
+        <tr>
+          <td className="border"><Icon.Lamp/> Light 2 <span className="icon_lock_unlock">{item1.active === 'disable' ? <Icon.Lock/> : <Icon.Unlock />}</span></td>
           <td className="text-center border"><Button color="primary"  className={item1.status==='on'? 'bg-danger text-white led_status1' : 'led_status1'} variant="outlined"  onClick={(e)=>Turn_led(item1.status, 'led_status1', 'status',item1.active)}>{item1.status}</Button></td>
           <td className="text-center border"><Button color="primary" variant="outlined"  onClick={(e)=>setTime(item1.status, 'led_status1', 'turnon', item1.active)}>{item1.turnon}</Button></td>
           <td className="text-center border"><Button color="primary" variant="outlined"  onClick={(e)=>setTime(item1.status, 'led_status1', 'turnoff', item1.active)}>{item1.turnoff}</Button></td>
         </tr>
-        <tr className={item2.active === 'disable' ? 'bg-secondary' : ''}>
-          <td className="border"><Icon.Lamp/> Light 3</td>
+        <tr>
+          <td className="border"><Icon.Lamp/> Light 3 <span className="icon_lock_unlock">{item2.active === 'disable' ? <Icon.Lock/> : <Icon.Unlock />}</span></td>
           <td className="text-center border"><Button color="primary"  className={item2.status==='on'? 'bg-danger text-white led_status2' : 'led_status2'} variant="outlined"  onClick={(e)=>Turn_led(item2.status, 'led_status2', 'status',item2.active)}>{item2.status}</Button></td>
           <td className="text-center border"><Button color="primary" variant="outlined"  onClick={(e)=>setTime(item2.status, 'led_status2', 'turnon', item2.active)}>{item2.turnon}</Button></td>
           <td className="text-center border"><Button color="primary" variant="outlined"  onClick={(e)=>setTime(item2.status, 'led_status2', 'turnoff', item2.active)}>{item2.turnoff}</Button></td>
         </tr>
-        <tr className={item3.active === 'disable' ? 'bg-secondary' : ''}>
-          <td className="border"><Icon.Lamp/> Light 4</td>
+        <tr>
+          <td className="border"><Icon.Lamp/> Light 4 <span className="icon_lock_unlock">{item3.active === 'disable' ? <Icon.Lock/> : <Icon.Unlock />}</span></td>
           <td className="text-center border"><Button color="primary"  className={item3.status==='on'? 'bg-danger text-white led_status3' : 'led_status3'} variant="outlined"  onClick={(e)=>Turn_led(item3.status, 'led_status3', 'status',item3.active)}>{item3.status}</Button></td>
           <td className="text-center border"><Button color="primary" variant="outlined"  onClick={(e)=>setTime(item3.status, 'led_status3', 'turnon', item3.active)}>{item3.turnon}</Button></td>
           <td className="text-center border"><Button color="primary" variant="outlined"  onClick={(e)=>setTime(item3.status, 'led_status3', 'turnoff', item3.active)}>{item3.turnoff}</Button></td>
         </tr>
-        <tr className={item5.active === 'disable' ? 'bg-secondary' : ''}>
-          <td className="border"><Icon.Power/> Fan</td>
+        <tr>
+          <td className="border"><Icon.Power/> Fan <span className="icon_lock_unlock">{item5.active === 'disable' ? <Icon.Lock/> : <Icon.Unlock />}</span></td>
           <td className="text-center border"><Button color="primary"  className={item5.status==='on'? 'bg-danger text-white led_status5' : 'led_status5'} variant="outlined"  onClick={(e)=>Turn_led(item5.status, 'led_status5', 'status',item5.active)}>{item5.status}</Button></td>
           <td className="text-center border"><Button color="primary" variant="outlined"  onClick={(e)=>setTime(item5.status, 'led_status5', 'turnon', item5.active)}>{item5.turnon}</Button></td>
           <td className="text-center border"><Button color="primary" variant="outlined"  onClick={(e)=>setTime(item5.status, 'led_status5', 'turnoff', item5.active)}>{item5.turnoff}</Button></td>
         </tr>
-        <tr className={item6.active === 'disable' ? 'bg-secondary' : ''}>
-          <td className="border"><Icon.Lamp/> Power socket 1</td>
+        <tr>
+          <td className="border"><Icon.Lamp/> Power socket 1 <span className="icon_lock_unlock">{item6.active === 'disable' ? <Icon.Lock/> : <Icon.Unlock />}</span></td>
           <td className="text-center border"><Button color="primary"  className={item6.status==='on'? 'bg-danger text-white led_status6' : 'led_status6'} variant="outlined"  onClick={(e)=>Turn_led(item6.status, 'led_status6', 'status',item6.active)}>{item6.status}</Button></td>
           <td className="text-center border"><Button color="primary" variant="outlined"  onClick={(e)=>setTime(item6.status, 'led_status6', 'turnon', item6.active)}>{item6.turnon}</Button></td>
           <td className="text-center border"><Button color="primary" variant="outlined"  onClick={(e)=>setTime(item6.status, 'led_status6', 'turnoff', item6.active)}>{item6.turnoff}</Button></td>
         </tr>
-        <tr className={item7.active === 'disable' ? 'bg-secondary' : ''}>
-          <td className="border"><Icon.Lamp/> Power socket 2</td>
+        <tr>
+          <td className="border"><Icon.Lamp/> Power socket 2 <span className="icon_lock_unlock">{item7.active === 'disable' ? <Icon.Lock/> : <Icon.Unlock />}</span></td>
           <td className="text-center border"><Button color="primary"  className={item7.status==='on'? 'bg-danger text-white led_status7' : 'led_status7'} variant="outlined"  onClick={(e)=>Turn_led(item7.status, 'led_status7', 'status',item7.active)}>{item7.status}</Button></td>
           <td className="text-center border"><Button color="primary" variant="outlined"  onClick={(e)=>setTime(item7.status, 'led_status7', 'turnon', item7.active)}>{item7.turnon}</Button></td>
           <td className="text-center border"><Button color="primary" variant="outlined"  onClick={(e)=>setTime(item7.status, 'led_status7', 'turnoff', item7.active)}>{item7.turnoff}</Button></td>
         </tr>
-        <tr className={item8.active === 'disable' ? 'bg-secondary' : ''}>
-          <td className="border"><Icon.Lamp/> Power socket 3</td>
+        <tr>
+          <td className="border"><Icon.Lamp/> Power socket 3 <span className="icon_lock_unlock">{item8.active === 'disable' ? <Icon.Lock/> : <Icon.Unlock />}</span></td>
           <td className="text-center border"><Button color="primary"  className={item8.status==='on'? 'bg-danger text-white led_status8' : 'led_status8'} variant="outlined"  onClick={(e)=>Turn_led(item8.status, 'led_status8', 'status',item8.active)}>{item8.status}</Button></td>
           <td className="text-center border"><Button color="primary" variant="outlined"  onClick={(e)=>setTime(item8.status, 'led_status8', 'turnon', item8.active)}>{item8.turnon}</Button></td>
           <td className="text-center border"><Button color="primary" variant="outlined"  onClick={(e)=>setTime(item8.status, 'led_status8', 'turnoff', item8.active)}>{item8.turnoff}</Button></td>

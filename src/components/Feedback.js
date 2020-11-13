@@ -155,7 +155,9 @@ const Feedback = () => {
               <textarea className="form-control textarea" onInput={autosize} value={content}  onChange={(e)=>setContent(e.target.value)}></textarea>
               <small className="text-center text-danger">{nullcontent}</small>
             </div>
-            <button type="submit" onClick={handleSubmit} className="btn btn-primary btn_submit button">Submit</button>
+            <div className="col-sm-12 text-center">
+              <button type="submit" onClick={handleSubmit} className=" col-sm-2 btn btn-primary btn_submit button">Submit</button>
+            </div>
           <table className="table">
             <thead>
               <tr>
