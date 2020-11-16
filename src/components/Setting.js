@@ -5,7 +5,7 @@ import Container from '@material-ui/core/Container';
 const Setting = () => {
   const [item, setItem] = useState([]);
   const [error, setError] = useState(null);
-  const [isNull, setIsNull] = useState(null);
+  const [isNull, setIsNull] = useState(true);
   const [name, setName] = useState('');
   const [general, setGeneral] = useState(true);
   const [birth, setBirth] = useState(new Date());
@@ -77,16 +77,15 @@ const Setting = () => {
 
   const getMembers = (id) => {
     let url_send_data = URL+`/api/info_members/${id}`;
-    console.log(url_send_data);
       fetch(url_send_data)
       .then((response) => response.json())
       .then((data) => {
-        if (data === 'null') {
-          setIsNull('Empty')
+        if (data.members === null) {
+          setIsNull(true)
           return false;
         }
+        setIsNull(false);
         setMembers(data.members)
-        console.log(data.members);
       }).catch((err) => console.error(err))
   }
   if (error) {
@@ -207,6 +206,9 @@ const Setting = () => {
 
       <table className="table">
         <thead>
+          <tr className="text-center">
+            <th colSpan="7">Members List</th>
+          </tr>
           <tr>
             <th>Order</th>
             <th>Name</th>
@@ -218,13 +220,21 @@ const Setting = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>{members.information_id}</td>
-            <td>{members.sex}</td>
-            <td>{members.indentifycard}</td>
-            <td>{members.phone}</td>
-            <td>{members.address}</td>
-          </tr>
+        {isNull === false ?
+          members.name.map((key,value)=> (
+            <tr key={value}>
+              <td>{value}</td>
+              <td>{key}</td>
+              <td>{members['birth'][value]}</td>
+              <td>{members['sex'][value] == 0 ? 'Male' : "Female"}</td>
+              <td>{members['indentifycard'][value]}</td>
+              <td>{members['address'][value]}</td>
+              <td>{members['phone'][value]}</td>
+            </tr>
+          ))
+          :
+          <tr className="text-center"><td colSpan="7">Empty</td></tr>
+        }
         </tbody>
       </table>
     </Container>

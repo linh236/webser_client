@@ -2,6 +2,10 @@
   "name": "webser_client",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+  "npm": "6.14.5",
+  "node": "8.17.0"
+  },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
@@ -13,7 +17,6 @@
     "bootstrap": "^4.5.3",
     "html-react-parser": "^0.14.0",
     "html-to-react": "^1.4.5",
-    "i18next": "^19.8.3",
     "jquery": "^3.5.1",
     "moment": "^2.29.1",
     "node-sass": "^4.14.1",
@@ -24,7 +27,6 @@
     "react-datetime": "^3.0.4",
     "react-datetime-picker": "^3.0.4",
     "react-dom": "^16.14.0",
-    "react-i18next": "^11.7.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-slideshow-image": "^3.3.0",
