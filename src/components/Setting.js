@@ -5,6 +5,7 @@ import Container from '@material-ui/core/Container';
 const Setting = () => {
   const [item, setItem] = useState([]);
   const [error, setError] = useState(null);
+  const [isNull, setIsNull] = useState(null);
   const [name, setName] = useState('');
   const [general, setGeneral] = useState(true);
   const [birth, setBirth] = useState(new Date());
@@ -17,9 +18,12 @@ const Setting = () => {
   const [permanent, setPermanent] = useState('');
   const [notice, setNotice] = useState(null);
   const [isLoading, setLoading] = useState(true);
+  const [members, setMembers] = useState([]);
+
   let id = localStorage.getItem('id');
   useEffect(()=> {
     getInfor(id);
+    getMembers(id);
   },[])
 
   const getInfor = (id) => {
@@ -68,6 +72,21 @@ const Setting = () => {
       .then((data) => {
         getInfor(id);
         setNotice("Updated succesfully !");
+      }).catch((err) => console.error(err))
+  }
+
+  const getMembers = (id) => {
+    let url_send_data = URL+`/api/info_members/${id}`;
+    console.log(url_send_data);
+      fetch(url_send_data)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data === 'null') {
+          setIsNull('Empty')
+          return false;
+        }
+        setMembers(data.members)
+        console.log(data.members);
       }).catch((err) => console.error(err))
   }
   if (error) {
@@ -185,6 +204,29 @@ const Setting = () => {
           </div>
         </div>
       </div>
+
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Order</th>
+            <th>Name</th>
+            <th>Birth</th>
+            <th>General</th>
+            <th>Indentify</th>
+            <th>Address</th>
+            <th>Phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{members.information_id}</td>
+            <td>{members.sex}</td>
+            <td>{members.indentifycard}</td>
+            <td>{members.phone}</td>
+            <td>{members.address}</td>
+          </tr>
+        </tbody>
+      </table>
     </Container>
     </>
     )
