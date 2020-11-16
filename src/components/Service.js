@@ -21,8 +21,6 @@ const Service = () => {
        .then(res => res.json())
        .then(res => {
          setItems(res.data);
-         console.log(res.data);
-         console.log(res.service_amount);
          setAmount(res.service_amount);
        })
        .catch((error) => {
@@ -61,7 +59,7 @@ const Service = () => {
               <th className="text-center border">Service</th>
               <th className="text-center border">Cost(vnd)</th>
               <th className="text-center border">Amount</th>
-              <th className="text-center border">Created at</th>
+              <th className="text-center border">Status</th>
             </tr>
           </thead>
           <tbody>
@@ -71,7 +69,7 @@ const Service = () => {
                   <td className="border text-center">{key.name}</td>
                   <td className="border text-center"><CurrencyFormat value={key.cost} displayType={'text'} thousandSeparator={true} /></td>
                   <td className="border text-center">{amount[value]}</td>
-                  <td className="border text-center">{moment(key.created_at).format('Y-MM-DD')}</td>
+                  <td className="border text-center">{key.status === 1 ? 'Compulsory' : '	Optional'}</td>
               </tr>
             ))}
           </tbody>
