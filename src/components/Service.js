@@ -10,6 +10,7 @@ const Service = () => {
   const [items, setItems] = useState([]);
   const [amount, setAmount] = useState([]);
   const [rents, setRents] = useState([]);
+  const [rentYes, setRentYes] = useState([]);
   let id = localStorage.getItem('id');
   useEffect(()=> {
     getService(id);
@@ -34,7 +35,13 @@ const Service = () => {
     fetch(url)
        .then(res => res.json())
        .then(res => {
+         var array_rentYes = [];
+         res.data.map((key,value)=>(
+           key['status'] == 1 ? array_rentYes.push(key['money']) : 0
+         ));
          setRents(res.data);
+         console.log(array_rentYes);
+         setRentYes(array_rentYes);
        })
        .catch((error) => {
          setError(error);
@@ -98,8 +105,8 @@ const Service = () => {
               </tr>
             ))}
               <tr className="bg-info">
-                <th className="border text-center" colspan="2">Total</th>
-                <th className="border text-center" colspan="3"><CurrencyFormat value={rents.reduce((totalMoney, rent) => totalMoney + rent.money, 0)} displayType={'text'} thousandSeparator={true} /></th>
+                <th className="border text-center" colSpan="2">Total</th>
+                <th className="border text-center" colSpan="3"><CurrencyFormat value={rentYes.reduce((totalMoney, rent) => totalMoney + rent, 0)} displayType={'text'} thousandSeparator={true} /> vnd</th>
               </tr>
           </tbody>
         </table>

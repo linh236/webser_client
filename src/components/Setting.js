@@ -203,40 +203,6 @@ const Setting = () => {
           </div>
         </div>
       </div>
-
-      <table className="table">
-        <thead>
-          <tr className="text-center">
-            <th colSpan="7">Members List</th>
-          </tr>
-          <tr>
-            <th>Order</th>
-            <th>Name</th>
-            <th>Birth</th>
-            <th>General</th>
-            <th>Indentify</th>
-            <th>Address</th>
-            <th>Phone</th>
-          </tr>
-        </thead>
-        <tbody>
-        {isNull === false ?
-          members.name.map((key,value)=> (
-            <tr key={value}>
-              <td>{value}</td>
-              <td>{key}</td>
-              <td>{members['birth'][value]}</td>
-              <td>{members['sex'][value] == 0 ? 'Male' : "Female"}</td>
-              <td>{members['indentifycard'][value]}</td>
-              <td>{members['address'][value]}</td>
-              <td>{members['phone'][value]}</td>
-            </tr>
-          ))
-          :
-          <tr className="text-center"><td colSpan="7">Empty</td></tr>
-        }
-        </tbody>
-      </table>
     </Container>
     </>
     )

@@ -174,7 +174,7 @@ const Feedback = () => {
                 items.map((key,value) => (
                   <tr key={value} className="repcontent">
                     <td className="text-center border">{key.title}</td>
-                    <td className="text-center border">{key.mark === 0 ? "No" : "Yes"}</td>
+                    <td className="text-center border">{key.mark === 0 ? "New" : key.mark == 1 ? "Inprogess" : key.mark == 2 ? "Done" : "Close"}</td>
                     <td className="text-center border">{moment(key.created_at).format('Y-MM-DD HH:mm')}</td>
                     <td className="text-center border">
                       <button className="btn btn-primary m-1"  onClick={(e)=>showcontentmodal(key.rep_content, key.content)} >
