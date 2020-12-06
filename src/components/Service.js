@@ -11,6 +11,7 @@ const Service = () => {
   const [amount, setAmount] = useState([]);
   const [rents, setRents] = useState([]);
   const [rentYes, setRentYes] = useState([]);
+  const [rentNo, setRentNo] = useState([]);
   let id = localStorage.getItem('id');
   useEffect(()=> {
     getService(id);
@@ -36,12 +37,13 @@ const Service = () => {
        .then(res => res.json())
        .then(res => {
          var array_rentYes = [];
+	 var array_rentNo = [];
          res.data.map((key,value)=>(
-           key['status'] == 1 ? array_rentYes.push(key['money']) : 0
+           key['status'] == 1 ? array_rentYes.push(key['money']) : array_rentNo.push(key['money'])
          ));
          setRents(res.data);
-         console.log(array_rentYes);
          setRentYes(array_rentYes);
+         setRentNo(array_rentNo);
        })
        .catch((error) => {
          setError(error);
@@ -73,7 +75,7 @@ const Service = () => {
             {items.map((key,value)=> (
               <tr key={value}>
                   <td className="border text-center">{value}</td>
-                  <td className="border text-center">{key.name}</td>
+                  <td className="border text-center text-capitalize">{key.name}</td>
                   <td className="border text-center"><CurrencyFormat value={key.cost} displayType={'text'} thousandSeparator={true} /></td>
                   <td className="border text-center">{amount[value]}</td>
                   <td className="border text-center">{key.status === 1 ? 'Compulsory' : '	Optional'}</td>
@@ -96,7 +98,7 @@ const Service = () => {
           </thead>
           <tbody>
             {rents.map((key,value)=> (
-              <tr key={value} className={key.status ===0? "no":""}>
+              <tr key={value} className={key.status ===0? "":""}>
                   <td className="border text-center">{value}</td>
                   <td className="border text-center">{key.senddate}</td>
                   <td className="border text-center"><CurrencyFormat value={key.money} displayType={'text'} thousandSeparator={true} /></td>
@@ -107,6 +109,10 @@ const Service = () => {
               <tr className="bg-info">
                 <th className="border text-center" colSpan="2">Total</th>
                 <th className="border text-center" colSpan="3"><CurrencyFormat value={rentYes.reduce((totalMoney, rent) => totalMoney + rent, 0)} displayType={'text'} thousandSeparator={true} /> vnd</th>
+              </tr>
+ 	      <tr className="bg-info">
+                <th className="border text-center" colSpan="2">Still owe</th>
+                <th className="border text-center" colSpan="3"><CurrencyFormat value={rentNo.reduce((totalMoney, rent) => totalMoney + rent, 0)} displayType={'text'} thousandSeparator={true} /> vnd</th>
               </tr>
           </tbody>
         </table>
