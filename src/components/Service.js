@@ -64,7 +64,7 @@ const Service = () => {
               <th colSpan="5" className="text-center border text-uppercase">My services are using</th>
             </tr>
             <tr>
-              <th className="text-center border">Order</th>
+              // <th className="text-center border">Order</th>
               <th className="text-center border">Service</th>
               <th className="text-center border">Cost(vnd)</th>
               <th className="text-center border">Amount</th>
@@ -74,7 +74,7 @@ const Service = () => {
           <tbody>
             {items.map((key,value)=> (
               <tr key={value}>
-                  <td className="border text-center">{value}</td>
+                  // <td className="border text-center">{value}</td>
                   <td className="border text-center text-capitalize">{key.name}</td>
                   <td className="border text-center"><CurrencyFormat value={key.cost} displayType={'text'} thousandSeparator={true} /></td>
                   <td className="border text-center">{amount[value]}</td>
